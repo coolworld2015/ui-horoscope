@@ -5,12 +5,14 @@
         .module('app')
         .controller('SignsCtrl', SignsCtrl);
 
-    SignsCtrl.$inject = ['$rootScope', 'SignsService'];
+    SignsCtrl.$inject = ['$scope', '$rootScope', '$state', 'SignsService'];
 
-    function SignsCtrl($rootScope, SignsService) {
+    function SignsCtrl($scope, $rootScope, $state, SignsService) {
         var vm = this;
         angular.extend(vm, {
             init: init,
+            goToBack: goToBack,
+            signsBack: signsBack,
             errorHandler: errorHandler
         });
 
@@ -24,6 +26,14 @@
                     $rootScope.loading = false;
                 })
                 .catch(errorHandler);
+        }
+
+        function goToBack() {
+            $scope.$broadcast('scrollHere');
+        }
+
+        function signsBack() {
+            $state.go('main');
         }
 
         function errorHandler() {

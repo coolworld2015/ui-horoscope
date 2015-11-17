@@ -14,8 +14,6 @@
             getSigns: getSigns
         };
 
-
-
         function getSigns() {
             var url = webUrl + '&callback=JSON_CALLBACK';
             return $http.jsonp(url)

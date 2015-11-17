@@ -6,14 +6,14 @@
 </head>
 <body>
     <center>
-        <div class="header">List of signs</div>
+        <div class="header" ng-click="signsCtrl.goToBack()">List of signs</div>
         <table class="table table-striped">
             <tr ng-repeat="sign in signsCtrl.signs">
                 <td ng-click="showName(sign.signName)">
                     <a href="#/signs/{{sign.signName}}">
                         <img ng-src="pic/{{sign.signName}}.jpg" width=100 height=100>
                     </a>
-                    <a style="color:blue;font-size:20px" href="#/signs/{{sign.signName}}">
+                    <a style="color:blue;font-size:20px" href="#">
                         {{sign.signName}}
                         ({{sign.startDate | jsonDate | date: 'MM/dd'}} -
                         {{sign.endDate | jsonDate | date: 'MM/dd'}})
@@ -21,6 +21,9 @@
                 </td>
             </tr>
         </table>
+        <hr>
+        <button class="btn btn-primary button" ng-click="signsCtrl.signsBack()" scroll-here>Back</button>
+        <br><br>
     </center>
 </body>
 </html>
