@@ -11,6 +11,7 @@
         var vm = this;
         angular.extend(vm, {
             init: init,
+            showToday: showToday,
             goToBack: goToBack,
             signsBack: signsBack,
             errorHandler: errorHandler
@@ -26,6 +27,10 @@
                     $rootScope.loading = false;
                 })
                 .catch(errorHandler);
+        }
+
+        function showToday(item) {
+            $state.go('show-today', {item: item});
         }
 
         function goToBack() {

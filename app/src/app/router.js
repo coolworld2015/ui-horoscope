@@ -32,6 +32,17 @@
                 }
             })
 
+            .state('show-today', {
+                url: '/show-today',
+                params: {item:{}},
+                templateUrl: 'show/show-today.html',
+                controller: 'ShowCtrl',
+                controllerAs: 'showCtrl',
+                data: {
+                    requireLogin: false
+                }
+            })
+
             .state('main.users', {
                 url: '/users',
                 views: {

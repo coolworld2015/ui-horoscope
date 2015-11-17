@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <center>
+        <div class="header">{{showCtrl.signName}} on {{showCtrl.todayDate}} </div>
+        <br><br>
+            <img ng-src="Pic/{{showCtrl.signName}}.jpg" width=200 height=200>
+        <hr>
+
+        <h3>{{showCtrl.details}}</h3>
+        <hr>
+        <h3>{{showCtrl.extDetails}}</h3>
+
+        <hr>
+        <button class="btn btn-primary button" ng-click="showCtrl.clientsAdd()">Yesterday</button>&nbsp
+        <button class="btn btn-primary button" ng-click="showCtrl.clientsAdd()">Tomorrow</button>
+        <br><br>
+        <button class="btn btn-primary button" ng-click="showCtrl.signsBack()" scroll-here>Back</button>
+    </center>
+</body>
+</html>
