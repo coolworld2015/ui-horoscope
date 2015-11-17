@@ -26,7 +26,7 @@ gulp.task('index', function () {
 
 gulp.task('pic', function () {
     return gulp.src('./app/pic/*.jpg')
-        .pipe(gulp.dest('./build/pic'))
+        .pipe(gulp.dest('./build/Pic'))
 });
 
 gulp.task('css', function () {

@@ -10,8 +10,8 @@
         <table class="table table-striped">
             <tr ng-repeat="sign in signsCtrl.signs">
                 <td ng-click="signsCtrl.showToday(sign)">
-                    <a href="#/signs/{{sign.signName}}">
-                        <img ng-src="pic/{{sign.signName}}.jpg" width=100 height=100>
+                    <a href="#">
+                        <img ng-src="./Pic/{{sign.signName}}.jpg" width=100 height=100>
                     </a>
                     <a style="color:blue;font-size:20px" href="#">
                         {{sign.signName}}
