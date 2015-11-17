@@ -5,9 +5,9 @@
         .module('app')
         .controller('ShowCtrl', ShowCtrl);
 
-    ShowCtrl.$inject = ['$state', '$stateParams', '$http'];
+    ShowCtrl.$inject = ['$rootScope', '$state', '$stateParams', '$http'];
 
-    function ShowCtrl($state, $stateParams, $http) {
+    function ShowCtrl($rootScope, $state, $stateParams, $http) {
         var vm = this;
         angular.extend(vm, {
             init: init,
@@ -22,6 +22,9 @@
         init();
 
         function init() {
+            $rootScope.loading = true;
+            $rootScope.myError = false;
+
             var d = new Date;
             var todayDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
 
@@ -36,6 +39,8 @@
                     details = details.replace(/’/g, "'");
                     vm.details = details;
                     vm.todayDate = todayDate;
+                    $rootScope.myError = false;
+                    $rootScope.loading = false;
                 }).error(errorHandler);
         }
 

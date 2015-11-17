@@ -20,6 +20,9 @@
         init();
 
         function init() {
+            $rootScope.loading = true;
+            $rootScope.myError = false;
+
             SignsService.getSigns()
                 .then(function(data){
                     vm.signs = data.data;
