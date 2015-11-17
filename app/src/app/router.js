@@ -22,11 +22,11 @@
                 }
             })
 			
-            .state('signsList', {
-                url: '/signsList',
-                templateUrl: 'login/login.html',
-                controller: 'SignsList',
-                controllerAs: 'signsList',
+            .state('signs', {
+                url: '/signs',
+                templateUrl: 'signs/signs.html',
+                controller: 'SignsCtrl',
+                controllerAs: 'signsCtrl',
                 data: {
                     requireLogin: false
                 }
