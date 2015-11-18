@@ -20,16 +20,18 @@
         init();
 
         function init() {
-            $rootScope.loading = true;
+            $rootScope.loading = false;
             $rootScope.myError = false;
 
-            SignsService.getSigns()
-                .then(function(data){
-                    vm.signs = data.data;
-                    $rootScope.myError = false;
-                    $rootScope.loading = false;
-                })
-                .catch(errorHandler);
+            vm.signs = SignsService.getSignsLocal();
+
+            //SignsService.getSigns()
+            //    .then(function(data){
+            //        vm.signs = data.data;
+            //        $rootScope.myError = false;
+            //        $rootScope.loading = false;
+            //    })
+            //    .catch(errorHandler);
         }
 
         function showToday(item) {
@@ -48,12 +50,6 @@
             $rootScope.loading = false;
             $rootScope.myError = true;
         }
-
-
-
-        //showName = function (name) {
-        //    document.location.href = "#/signs/" + name;
-        //}
     }
 
 })();

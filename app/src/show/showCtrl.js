@@ -50,6 +50,7 @@
         }
 
         function signsBack() {
+            $rootScope.loading = true;
             $state.go('signs');
         }
 
