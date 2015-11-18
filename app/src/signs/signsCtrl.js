@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -25,13 +25,16 @@
 
             vm.signs = SignsService.getSignsLocal();
 
-            //SignsService.getSigns()
-            //    .then(function(data){
-            //        vm.signs = data.data;
-            //        $rootScope.myError = false;
-            //        $rootScope.loading = false;
-            //    })
-            //    .catch(errorHandler);
+            var online = false;
+            if (online) {
+                SignsService.getSigns()
+                    .then(function (data) {
+                        vm.signs = data.data;
+                        $rootScope.myError = false;
+                        $rootScope.loading = false;
+                    })
+                    .catch(errorHandler);
+            }
         }
 
         function showToday(item) {

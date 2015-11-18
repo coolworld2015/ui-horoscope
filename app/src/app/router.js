@@ -36,8 +36,30 @@
                 url: '/show-today',
                 params: {item:{}},
                 templateUrl: 'show/show-today.html',
-                controller: 'ShowCtrl',
-                controllerAs: 'showCtrl',
+                controller: 'ShowTodayCtrl',
+                controllerAs: 'showTodayCtrl',
+                data: {
+                    requireLogin: false
+                }
+            })
+
+            .state('show-yesterday', {
+                url: '/show-yesterday',
+                params: {item:{}},
+                templateUrl: 'show/show-yesterday.html',
+                controller: 'ShowYesterdayCtrl',
+                controllerAs: 'showYesterdayCtrl',
+                data: {
+                    requireLogin: false
+                }
+            })
+
+            .state('show-tomorrow', {
+                url: '/show-tomorrow',
+                params: {item:{}},
+                templateUrl: 'show/show-tomorrow.html',
+                controller: 'ShowTomorrowCtrl',
+                controllerAs: 'showTomorrowCtrl',
                 data: {
                     requireLogin: false
                 }

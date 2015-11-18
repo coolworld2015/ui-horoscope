@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<center>
+    <div class="header">{{showYesterdayCtrl.signName}} on {{showYesterdayCtrl.date}} </div>
+    <br><br>
+    <img ng-src="Pic/{{showYesterdayCtrl.signName}}.jpg" width=200 height=200>
+    <hr>
+    <div style="font-size:20px; color: white; background-color: black;">{{showYesterdayCtrl.details}}</div>
+    <hr>
+
+    <button class="btn btn-primary button" ng-click="showYesterdayCtrl.showToday()">Today</button>&nbsp
+    <button class="btn btn-primary button" ng-click="showYesterdayCtrl.showTomorrow()">Tomorrow</button>
+    <br><br>
+    <button class="btn btn-primary button" ng-click="showYesterdayCtrl.signsBack()" scroll-here>Back</button>
+</center>
+</body>
+</html>

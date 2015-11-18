@@ -3,16 +3,16 @@
 
     angular
         .module('app')
-        .controller('ShowCtrl', ShowCtrl);
+        .controller('ShowTodayCtrl', ShowTodayCtrl);
 
-    ShowCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ShowService'];
+    ShowTodayCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ShowService'];
 
-    function ShowCtrl($rootScope, $state, $stateParams, ShowService) {
+    function ShowTodayCtrl($rootScope, $state, $stateParams, ShowService) {
         var vm = this;
         angular.extend(vm, {
             init: init,
-            //showToday: showToday,
-            //goToBack: goToBack,
+            showYesterday: showYesterday,
+            showTomorrow: showTomorrow,
             signsBack: signsBack,
             errorHandler: errorHandler
         });
@@ -27,36 +27,31 @@
 
             var d = new Date;
             var todayDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
-            var yesterdayDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
-            var tomorrowDate = d.getMonth() + 2 + '/' + d.getDate() + '/' + d.getFullYear();
+            var yesterdayDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
+            var tomorrowDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
 
-            var src = "http://m-api.californiapsychics.com/horoscope?format=json" +
-                "&sign=" + vm.signName +
-                "&date=" + todayDate +
-                "&callback=JSON_CALLBACK";
-
+            vm.date = todayDate;
             var param = "&sign=" + vm.signName + "&date=" + todayDate;
 
             ShowService.getHoroscope(param)
-                .then(function(data){
+                .then(function (data) {
                     var details = data.data[0].details.scope;
                     details = details.replace(/’/g, "'");
                     vm.details = details;
-                    vm.todayDate = todayDate;
                     $rootScope.myError = false;
                     $rootScope.loading = false;
                 })
                 .catch(errorHandler);
+        }
 
-            //$http({method: 'JSONP', url: src})
-            //    .success(function (data) {
-            //        var details = data[0].details.scope;
-            //        details = details.replace(/’/g, "'");
-            //        vm.details = details;
-            //        vm.todayDate = todayDate;
-            //        $rootScope.myError = false;
-            //        $rootScope.loading = false;
-            //    }).error(errorHandler);
+        function showYesterday() {
+            $rootScope.loading = true;
+            $state.go('show-yesterday', {item: $stateParams.item});
+        }
+
+        function showTomorrow() {
+            $rootScope.loading = true;
+            $state.go('show-tomorrow', {item: $stateParams.item});
         }
 
         function errorHandler() {
@@ -68,8 +63,5 @@
             $rootScope.loading = true;
             $state.go('signs');
         }
-
     }
-
-
 })();
