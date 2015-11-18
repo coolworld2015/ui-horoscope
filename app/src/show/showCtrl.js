@@ -5,9 +5,9 @@
         .module('app')
         .controller('ShowCtrl', ShowCtrl);
 
-    ShowCtrl.$inject = ['$rootScope', '$state', '$stateParams', '$http'];
+    ShowCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ShowService'];
 
-    function ShowCtrl($rootScope, $state, $stateParams, $http) {
+    function ShowCtrl($rootScope, $state, $stateParams, ShowService) {
         var vm = this;
         angular.extend(vm, {
             init: init,
@@ -27,21 +27,36 @@
 
             var d = new Date;
             var todayDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
+            var yesterdayDate = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
+            var tomorrowDate = d.getMonth() + 2 + '/' + d.getDate() + '/' + d.getFullYear();
 
             var src = "http://m-api.californiapsychics.com/horoscope?format=json" +
                 "&sign=" + vm.signName +
                 "&date=" + todayDate +
                 "&callback=JSON_CALLBACK";
 
-            $http({method: 'JSONP', url: src})
-                .success(function (data) {
-                    var details = data[0].details.scope;
+            var param = "&sign=" + vm.signName + "&date=" + todayDate;
+
+            ShowService.getHoroscope(param)
+                .then(function(data){
+                    var details = data.data[0].details.scope;
                     details = details.replace(/’/g, "'");
                     vm.details = details;
                     vm.todayDate = todayDate;
                     $rootScope.myError = false;
                     $rootScope.loading = false;
-                }).error(errorHandler);
+                })
+                .catch(errorHandler);
+
+            //$http({method: 'JSONP', url: src})
+            //    .success(function (data) {
+            //        var details = data[0].details.scope;
+            //        details = details.replace(/’/g, "'");
+            //        vm.details = details;
+            //        vm.todayDate = todayDate;
+            //        $rootScope.myError = false;
+            //        $rootScope.loading = false;
+            //    }).error(errorHandler);
         }
 
         function errorHandler() {
