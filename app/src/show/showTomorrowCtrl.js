@@ -3,16 +3,16 @@
 
     angular
         .module('app')
-        .controller('ShowTodayCtrl', ShowTodayCtrl);
+        .controller('ShowTomorrowCtrl', ShowTomorrowCtrl);
 
-    ShowTodayCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ShowService'];
+    ShowTomorrowCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ShowService'];
 
-    function ShowTodayCtrl($rootScope, $state, $stateParams, ShowService) {
+    function ShowTomorrowCtrl($rootScope, $state, $stateParams, ShowService) {
         var vm = this;
         angular.extend(vm, {
             init: init,
             showYesterday: showYesterday,
-            showTomorrow: showTomorrow,
+            showToday: showToday,
             signsBack: signsBack,
             errorHandler: errorHandler
         });
@@ -26,10 +26,10 @@
             $rootScope.myError = false;
 
             var d = new Date;
-            var todayDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
+            var tomorrowDate = d.getMonth() + 1 + '/' + (d.getDate() + 1) + '/' + d.getFullYear();
 
-            vm.date = todayDate;
-            var param = "&sign=" + vm.signName + "&date=" + todayDate;
+            vm.date = tomorrowDate;
+            var param = "&sign=" + vm.signName + "&date=" + tomorrowDate;
 
             ShowService.getHoroscope(param)
                 .then(function (data) {
@@ -47,9 +47,9 @@
             $state.go('show-yesterday', {item: $stateParams.item});
         }
 
-        function showTomorrow() {
+        function showToday() {
             $rootScope.loading = true;
-            $state.go('show-tomorrow', {item: $stateParams.item});
+            $state.go('show-today', {item: $stateParams.item});
         }
 
         function errorHandler() {
