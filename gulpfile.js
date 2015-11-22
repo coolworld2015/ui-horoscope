@@ -8,7 +8,6 @@ var templateCache = require('gulp-angular-templatecache');
 
 var scripts = [
     './app/vendors/angular/angular.js',
-    './app/vendors/angular-bootstrap/ui-bootstrap-tpls.js',
     './app/vendors/angular-ui-router/release/angular-ui-router.js',
     './app/src/**/!(*.test).js'
 ];
@@ -77,23 +76,6 @@ gulp.task('prod:scripts', function () {
     return getScripts()
         .pipe(uglify())
         .pipe(gulp.dest('./build'));
-});
-
-gulp.task('test', function (done) {
-    require('karma').server.start({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }, function () {
-        done();
-    });
-});
-
-gulp.task('tdd', function(done){
-    return require('karma').server.start({
-        configFile: __dirname + '/karma.conf.js'
-    }, function () {
-        done();
-    });
 });
 
 gulp.task('dev', ['dev:scripts', 'dev:html', 'css', 'pic']);
