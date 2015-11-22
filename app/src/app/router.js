@@ -8,7 +8,6 @@
 	routeConfig.$inject = ['$stateProvider','$urlRouterProvider'];
 
     function routeConfig($stateProvider, $urlRouterProvider) {
-        //$urlRouterProvider.otherwise('/login');  //TODO
         $urlRouterProvider.otherwise('/main');
 		
         $stateProvider
@@ -51,7 +50,27 @@
                 controllerAs: 'showYesterdayCtrl',
                 data: {
                     requireLogin: false
-                }
+                },
+				resolve: {
+					yesterday: 
+					['$rootScope', '$http', '$stateParams',
+					function getHoroscope($rootScope, $http, $stateParams) {
+						var webUrl = $rootScope.myConfig.webUrl;
+						var d = new Date;
+						var yesterdayDate = d.getMonth() + 1 + '/' + (d.getDate() - 1) + '/' + d.getFullYear();
+						var param = "&sign=" + $stateParams.item.signName + "&date=" + yesterdayDate;
+						var url = webUrl + param + '&callback=JSON_CALLBACK';
+						return $http.jsonp(url)
+							.then(function (result) {
+								var details = result.data[0].details.scope;
+								details = details.replace(/’/g, "'");
+								return details;
+							})
+							.catch(function() {
+							});
+						}
+					]
+				}
             })
 
             .state('show-tomorrow', {

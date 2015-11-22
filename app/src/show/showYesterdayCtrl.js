@@ -5,9 +5,9 @@
         .module('app')
         .controller('ShowYesterdayCtrl', ShowYesterdayCtrl);
 
-    ShowYesterdayCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ShowService'];
+    ShowYesterdayCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ShowService', 'yesterday'];
 
-    function ShowYesterdayCtrl($rootScope, $state, $stateParams, ShowService) {
+    function ShowYesterdayCtrl($rootScope, $state, $stateParams, ShowService, yesterday) {
         var vm = this;
         angular.extend(vm, {
             init: init,
@@ -22,9 +22,19 @@
         init();
 
         function init() {
-            $rootScope.loading = true;
+            var d = new Date;
+            var yesterdayDate = d.getMonth() + 1 + '/' + (d.getDate() - 1) + '/' + d.getFullYear();
+            vm.date = yesterdayDate;
+			
+			if (yesterday) {
+			vm.details = yesterday;
+            $rootScope.loading = false;
             $rootScope.myError = false;
-
+			} else {
+				errorHandler();
+			}
+			
+ /*
             var d = new Date;
             var yesterdayDate = d.getMonth() + 1 + '/' + (d.getDate() - 1) + '/' + d.getFullYear();
 
@@ -40,6 +50,7 @@
                     $rootScope.loading = false;
                 })
                 .catch(errorHandler);
+ */				
         }
 
         function showToday() {
