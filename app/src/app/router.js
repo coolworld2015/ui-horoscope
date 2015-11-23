@@ -8,6 +8,24 @@
 	routeConfig.$inject = ['$stateProvider','$urlRouterProvider'];
 
     function routeConfig($stateProvider, $urlRouterProvider) {
+		getHoroscope.$inject =['$rootScope', '$http', '$stateParams', 'ShowService'];
+		
+		function getHoroscope($rootScope, $http, $stateParams, ShowService) {
+			var webUrl = $rootScope.myConfig.webUrl;
+			var d = new Date;
+			var todayDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
+			var param = "&sign=" + $stateParams.item.signName + "&date=" + ShowService.paramDate();
+			var url = webUrl + param + '&callback=JSON_CALLBACK';
+			return $http.jsonp(url)
+				.then(function (result) {
+					var details = result.data[0].details.scope;
+					details = details.replace(/’/g, "'");
+					return details;
+				})
+				.catch(function() {
+				});
+		}
+						
         $urlRouterProvider.otherwise('/main');
 		
         $stateProvider
@@ -41,24 +59,7 @@
                     requireLogin: false
                 },
 				resolve: {
-					today: 
-					['$rootScope', '$http', '$stateParams',
-					function ($rootScope, $http, $stateParams) {
-						var webUrl = $rootScope.myConfig.webUrl;
-						var d = new Date;
-						var todayDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
-						var param = "&sign=" + $stateParams.item.signName + "&date=" + todayDate;
-						var url = webUrl + param + '&callback=JSON_CALLBACK';
-						return $http.jsonp(url)
-							.then(function (result) {
-								var details = result.data[0].details.scope;
-								details = details.replace(/’/g, "'");
-								return details;
-							})
-							.catch(function() {
-							});
-						}
-					]
+					today: getHoroscope
 				}
             })
 
@@ -105,7 +106,7 @@
 				resolve: {
 					tomorrow: 
 					['$rootScope', '$http', '$stateParams',
-					function ($rootScope, $http, $stateParams) {
+					function getHoroscope($rootScope, $http, $stateParams) {
 						var webUrl = $rootScope.myConfig.webUrl;
 						var d = new Date;
 						var tomorrowDate = d.getMonth() + 1 + '/' + (d.getDate() + 1) + '/' + d.getFullYear();

@@ -11,7 +11,8 @@
         var webUrl = $rootScope.myConfig.webUrl;
 
         return {
-            getHoroscope: getHoroscope
+            getHoroscope: getHoroscope,
+			paramDate: paramDate
         };
 
         function getHoroscope(param) {
@@ -21,6 +22,15 @@
                     return result;
                 });
         }
+		
+		function paramDate(param) {
+			var d = new Date;
+			var paramDate;
+			
+			paramDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
+			
+			return paramDate;
+		}
 
     }
 })();
