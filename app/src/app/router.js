@@ -43,7 +43,7 @@
 				resolve: {
 					today: 
 					['$rootScope', '$http', '$stateParams',
-					function getHoroscope($rootScope, $http, $stateParams) {
+					function ($rootScope, $http, $stateParams) {
 						var webUrl = $rootScope.myConfig.webUrl;
 						var d = new Date;
 						var todayDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
@@ -74,7 +74,7 @@
 				resolve: {
 					yesterday: 
 					['$rootScope', '$http', '$stateParams',
-					function getHoroscope($rootScope, $http, $stateParams) {
+					function ($rootScope, $http, $stateParams) {
 						var webUrl = $rootScope.myConfig.webUrl;
 						var d = new Date;
 						var yesterdayDate = d.getMonth() + 1 + '/' + (d.getDate() - 1) + '/' + d.getFullYear();
@@ -101,7 +101,27 @@
                 controllerAs: 'showTomorrowCtrl',
                 data: {
                     requireLogin: false
-                }
+                },
+				resolve: {
+					tomorrow: 
+					['$rootScope', '$http', '$stateParams',
+					function ($rootScope, $http, $stateParams) {
+						var webUrl = $rootScope.myConfig.webUrl;
+						var d = new Date;
+						var tomorrowDate = d.getMonth() + 1 + '/' + (d.getDate() + 1) + '/' + d.getFullYear();
+						var param = "&sign=" + $stateParams.item.signName + "&date=" + tomorrowDate;
+						var url = webUrl + param + '&callback=JSON_CALLBACK';
+						return $http.jsonp(url)
+							.then(function (result) {
+								var details = result.data[0].details.scope;
+								details = details.replace(/’/g, "'");
+								return details;
+							})
+							.catch(function() {
+							});
+						}
+					]
+				}
             })
 
             .state('main.users', {

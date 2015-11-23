@@ -33,26 +33,6 @@
 			} else {
 				errorHandler();
 			}
- /*			
-            $rootScope.loading = true;
-            $rootScope.myError = false;
-
-            var d = new Date;
-            var todayDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
-
-            vm.date = todayDate;
-            var param = "&sign=" + vm.signName + "&date=" + todayDate;
-
-            ShowService.getHoroscope(param)
-                .then(function (data) {
-                    var details = data.data[0].details.scope;
-                    details = details.replace(/’/g, "'");
-                    vm.details = details;
-                    $rootScope.myError = false;
-                    $rootScope.loading = false;
-                })
-                .catch(errorHandler);
- */				
         }
 
         function showYesterday() {
