@@ -26,12 +26,20 @@
 		function paramDate(param) {
 			var d = new Date;
 			var paramDate;
-			
-			paramDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
+		
+			switch(param) {
+				case 'today': paramDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
+							  break;
+				case 'yesterday': paramDate = d.getMonth() + 1 + '/' + (d.getDate() - 1) + '/' + d.getFullYear();
+							  break;
+				case 'tomorrow': paramDate = d.getMonth() + 1 + '/' + (d.getDate() + 1) + '/' + d.getFullYear();
+							  break;
+				default: paramDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
+							  break;				
+			}
 			
 			return paramDate;
 		}
-
     }
 })();
 

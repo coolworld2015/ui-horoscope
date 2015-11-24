@@ -22,9 +22,7 @@
         init();
 
         function init() {
-			var d = new Date;
-            var tomorrowDate = d.getMonth() + 1 + '/' + (d.getDate() + 1) + '/' + d.getFullYear();
-            vm.date = tomorrowDate;
+            vm.date = ShowService.paramDate('tomorrow');
 			
 			if (tomorrow) {
 			vm.details = tomorrow;

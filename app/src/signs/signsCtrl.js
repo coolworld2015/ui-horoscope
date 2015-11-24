@@ -38,6 +38,8 @@
         }
 
         function showToday(item) {
+			$rootScope.loading = true;
+            $rootScope.myError = false;
             $state.go('show-today', {item: item});
         }
 

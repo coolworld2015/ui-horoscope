@@ -8,22 +8,24 @@
 	routeConfig.$inject = ['$stateProvider','$urlRouterProvider'];
 
     function routeConfig($stateProvider, $urlRouterProvider) {
-		getHoroscope.$inject =['$rootScope', '$http', '$stateParams', 'ShowService'];
-		
-		function getHoroscope($rootScope, $http, $stateParams, ShowService) {
-			var webUrl = $rootScope.myConfig.webUrl;
-			var d = new Date;
-			var todayDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
-			var param = "&sign=" + $stateParams.item.signName + "&date=" + ShowService.paramDate();
-			var url = webUrl + param + '&callback=JSON_CALLBACK';
-			return $http.jsonp(url)
-				.then(function (result) {
-					var details = result.data[0].details.scope;
-					details = details.replace(/’/g, "'");
-					return details;
-				})
-				.catch(function() {
-				});
+		function resolver(paramDate) {
+			getHoroscope.$inject =['$rootScope', '$http', '$stateParams', 'ShowService'];
+			function getHoroscope($rootScope, $http, $stateParams, ShowService) {
+				var webUrl = $rootScope.myConfig.webUrl;
+				var d = new Date;
+				var todayDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
+				var param = "&sign=" + $stateParams.item.signName + "&date=" + ShowService.paramDate(paramDate);
+				var url = webUrl + param + '&callback=JSON_CALLBACK';
+				return $http.jsonp(url)
+					.then(function (result) {
+						var details = result.data[0].details.scope;
+						details = details.replace(/’/g, "'");
+						return details;
+					})
+					.catch(function() {
+					});
+			}
+			return getHoroscope;
 		}
 						
         $urlRouterProvider.otherwise('/main');
@@ -59,7 +61,7 @@
                     requireLogin: false
                 },
 				resolve: {
-					today: getHoroscope
+					today: resolver('today')
 				}
             })
 
@@ -73,24 +75,7 @@
                     requireLogin: false
                 },
 				resolve: {
-					yesterday: 
-					['$rootScope', '$http', '$stateParams',
-					function ($rootScope, $http, $stateParams) {
-						var webUrl = $rootScope.myConfig.webUrl;
-						var d = new Date;
-						var yesterdayDate = d.getMonth() + 1 + '/' + (d.getDate() - 1) + '/' + d.getFullYear();
-						var param = "&sign=" + $stateParams.item.signName + "&date=" + yesterdayDate;
-						var url = webUrl + param + '&callback=JSON_CALLBACK';
-						return $http.jsonp(url)
-							.then(function (result) {
-								var details = result.data[0].details.scope;
-								details = details.replace(/’/g, "'");
-								return details;
-							})
-							.catch(function() {
-							});
-						}
-					]
+					yesterday: resolver('yesterday')
 				}
             })
 
@@ -104,24 +89,7 @@
                     requireLogin: false
                 },
 				resolve: {
-					tomorrow: 
-					['$rootScope', '$http', '$stateParams',
-					function getHoroscope($rootScope, $http, $stateParams) {
-						var webUrl = $rootScope.myConfig.webUrl;
-						var d = new Date;
-						var tomorrowDate = d.getMonth() + 1 + '/' + (d.getDate() + 1) + '/' + d.getFullYear();
-						var param = "&sign=" + $stateParams.item.signName + "&date=" + tomorrowDate;
-						var url = webUrl + param + '&callback=JSON_CALLBACK';
-						return $http.jsonp(url)
-							.then(function (result) {
-								var details = result.data[0].details.scope;
-								details = details.replace(/’/g, "'");
-								return details;
-							})
-							.catch(function() {
-							});
-						}
-					]
+					tomorrow: resolver('tomorrow')
 				}
             })
 
