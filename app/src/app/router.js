@@ -8,6 +8,7 @@
 	routeConfig.$inject = ['$stateProvider','$urlRouterProvider'];
 
     function routeConfig($stateProvider, $urlRouterProvider) {
+	
 		function resolver(paramDate) {
 			getHoroscope.$inject =['$rootScope', '$http', '$stateParams', 'ShowService'];
 			function getHoroscope($rootScope, $http, $stateParams, ShowService) {

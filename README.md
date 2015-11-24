@@ -1,5 +1,5 @@
 # UI-Horoscope
-git clone https://github.com/wintermute2015/ui-horoscope.git
+git clone https://github.com/coolworld2015/ui-horoscope.git
 -------------------------------------------------------------------------------------------------
 npm i
 -------------------------------------------------------------------------------------------------
