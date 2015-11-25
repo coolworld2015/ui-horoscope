@@ -1,4 +1,4 @@
-# UI-Horoscope
+# UI Horoscope
 git clone https://github.com/coolworld2015/ui-horoscope.git
 -------------------------------------------------------------------------------------------------
 npm i
@@ -9,15 +9,7 @@ npm run release
 -------------------------------------------------------------------------------------------------
 npm run tdd
 -------------------------------------------------------------------------------------------------
-gulp //default build
-gulp watch //no test
-gulp build //for dev
-gulp release //for release
-gulp test // one time
-gulp tdd  // all times
-
-npm start // run server.js
-npm prune // remove npm from package.json
+npm prune
 -------------------------------------------------------------------------------------------------
 git config user.name "wintermute2015"
 -------------------------------------------------------------------------------------------------
