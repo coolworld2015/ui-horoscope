@@ -17,8 +17,6 @@
             errorHandler: errorHandler
         });
 
-        init();
-
         function init() {
             $rootScope.loading = false;
             $rootScope.myError = false;

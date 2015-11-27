@@ -5,18 +5,18 @@
     <title></title>
 </head>
 <body>
-<center>
-    <div class="header">{{showTomorrowCtrl.signName}} on {{showTomorrowCtrl.date}} </div>
-    <br><br>
-    <img ng-src="Pic/{{showTomorrowCtrl.signName}}.jpg" width=200 height=200>
-    <hr>
-    <div style="font-size:20px; color: white; background-color: black;">{{showTomorrowCtrl.details}}</div>
-    <hr>
+    <center ng-init="showTomorrowCtrl.init()">
+		<div class="header">{{showTomorrowCtrl.signName}} on {{showTomorrowCtrl.date}} </div>
+		<br><br>
+		<img ng-src="Pic/{{showTomorrowCtrl.signName}}.jpg" width=200 height=200>
+		<hr>
+		<div style="font-size:20px; color: white; background-color: black;">{{showTomorrowCtrl.details}}</div>
+		<hr>
 
-    <button class="btn btn-primary button" ng-click="showTomorrowCtrl.showYesterday()">Yesterday</button>&nbsp
-    <button class="btn btn-primary button" ng-click="showTomorrowCtrl.showToday()">Today</button>
-    <br><br>
-    <button class="btn btn-primary button" ng-click="showTomorrowCtrl.signsBack()" scroll-here>Back</button>
-</center>
+		<button class="btn btn-primary button" ng-click="showTomorrowCtrl.showYesterday()">Yesterday</button>&nbsp
+		<button class="btn btn-primary button" ng-click="showTomorrowCtrl.showToday()">Today</button>
+		<br><br>
+		<button class="btn btn-primary button" ng-click="showTomorrowCtrl.signsBack()" scroll-here>Back</button>
+	</center>
 </body>
 </html>

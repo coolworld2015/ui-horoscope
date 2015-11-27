@@ -19,8 +19,6 @@
 
         angular.extend(vm, $stateParams.item);
 
-        init();
-
         function init() {
             vm.date = ShowService.paramDate('yesterday');
 			
