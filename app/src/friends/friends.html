@@ -1,7 +1,7 @@
 <center ng-init="friendsCtrl.init()">
 	<div class="header" ng-click="friendsCtrl.goToBack()" ng-bind="friendsCtrl.title"></div>
 	<br><br>
-	<table class="table table-striped" style="font-size:20px; color: white; background-color: black;">
+	<table class="table table-striped input" style="font-size:20px; color: white; background-color: black;">
 		<tr ng-repeat="item in friendsCtrl.signs">
 			<tr ng-repeat="item in friendsCtrl.friends track by $index">
 				<td ng-click="friendsCtrl.usersEditForm(item)" style="font-size:20px; color: white; background-color: black;">
