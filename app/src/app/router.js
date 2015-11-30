@@ -94,7 +94,7 @@
 				}
             })
 
-            .state('main.users', {
+            .state('users', {
                 url: '/users',
                 views: {
                     'display': {
@@ -108,7 +108,7 @@
                 }
             })
 
-            .state('main.users-add', {
+            .state('users-add', {
                 url: '/users-add',
                 params: {item:{}},
                 views: {
@@ -123,7 +123,7 @@
                 }
             })
 			
-			.state('main.users-edit', {
+			.state('users-edit', {
                 url: '/users-edit',
                 params: {item:{}},
                 views: {
@@ -138,7 +138,7 @@
                 }
             })
 
-            .state('main.users-dialog', {
+            .state('users-dialog', {
                 url: '/users-dialog',
                 params: {item:{}},
                 views: {
