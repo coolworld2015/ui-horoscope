@@ -93,7 +93,14 @@
 					tomorrow: resolver('tomorrow')
 				}
             })
-
+			
+            .state('friends', {
+                url: '/friends',
+				templateUrl: 'friends/friends.html',
+				controller: 'FriendsCtrl',
+				controllerAs: 'friendsCtrl'  
+            })
+			
             .state('users', {
                 url: '/users',
 				templateUrl: 'users/users.html',

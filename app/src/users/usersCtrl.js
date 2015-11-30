@@ -28,7 +28,8 @@
         init();
 
         function init() {
-            vm.title = 'Friends';
+            vm.title = 'List of friends';
+
             vm.sort = 'name';
 			
             //$scope.currentPage = 1;
