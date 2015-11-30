@@ -1,0 +1,27 @@
+<center>
+	<div class="header" ng-click="usersCtrl.goToBack()" ng-bind="usersCtrl.title"></div>
+		<br><br>
+		<table class="table table-striped input" style="font-size:20px; color: white; background-color: black;">
+			<tr ng-repeat="item in usersCtrl.users track by $index">
+				<td ng-click="usersCtrl.usersEditForm(item)" style="font-size:20px; color: white; background-color: black;">
+					<a href="#">
+						<img ng-src="./Pic/{{item.name}}.jpg" width=100 height=100>
+					</a>
+					<a style="color: white; font-size:20px" href="#">
+						{{item.name}}
+					</a>
+				</td>
+			</tr>
+		</table>
+	<hr>
+		<h4>
+			<div class="label label-default" style="font-size:17px; background-color:#337ab7" ng-click="usersCtrl.goToHead()">
+				Records count: <span ng-bind="usersCtrl.users.length"></span>
+			</div>
+		</h4>
+	<hr>
+
+	<button class="btn btn-primary button" ng-click="usersCtrl.usersAdd()">Add</button>&nbsp
+	<button class="btn btn-primary button" ng-click="usersCtrl.usersBack()" scroll-here>Back</button>
+	<br><br>
+</center>

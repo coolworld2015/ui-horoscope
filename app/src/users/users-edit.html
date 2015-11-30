@@ -1,0 +1,58 @@
+<center>
+	<form ng-submit="usersEditCtrl.usersSubmit()" novalidate name="usersEditCtrl.form">
+		<div class="header">&nbsp;{{usersEditCtrl.name}}</div>
+		<br><br>
+		<div 
+			style="border-color: white;
+				border-style: solid;
+				border-width: thick;
+				width: 310px;">
+			<img ng-src="./Pic/{{usersEditCtrl.description}}" width=300px height=320px>
+		</div>
+		<br>
+		<table class="table table-bordered">
+			<tr>
+				<td>
+					<input type="text" class="form-control input" required
+						   style="font-size:20px; color: white; background-color: black;"
+						   placeholder="Name" name="name"
+						   ng-model="usersEditCtrl.name">
+
+					<div ng-if="usersEditCtrl.form.$submitted">
+						<div ng-show="usersEditCtrl.form.name.$error.required" class="valid">Value required</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<input type="text" class="form-control input" required
+						   style="font-size:20px; color: white; background-color: black;"
+						   placeholder="Date of birth" name="pass"
+						   ng-model="usersEditCtrl.pass">
+
+					<div ng-if="usersEditCtrl.form.$submitted">
+						<div ng-show="usersEditCtrl.form.pass.$error.required" class="valid">Value required</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<input type="text" class="form-control input" required
+						   style="font-size:20px; color: white; background-color: black;"					
+						   placeholder="Description" name="description"
+						   ng-model="usersEditCtrl.description">
+
+					<div ng-if="usersEditCtrl.form.$submitted">
+						<div ng-show="usersEditCtrl.form.description.$error.required" class="valid">Value required</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<button type="submit" class="btn btn-primary button">Submit</button>&nbsp
+		<button type="button" class="btn btn-primary button" ng-click="usersEditCtrl.usersDialog()">Delete</button><br><br>
+		<button type="button" class="btn btn-primary button" ng-click="usersEditCtrl.usersEditBack()">Back</button>
+	</form>
+</center>

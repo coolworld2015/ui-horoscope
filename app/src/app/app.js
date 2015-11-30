@@ -27,6 +27,7 @@
     init.$inject = ['$rootScope'];
 	
     function init($rootScope) {
+		$rootScope.mode = '';
         $rootScope.myConfig = {
             webUrl: 'http://m-api.californiapsychics.com/horoscope?format=json'
         };
