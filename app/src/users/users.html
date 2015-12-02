@@ -4,13 +4,13 @@
 		<table class="table table-striped input" style="font-size:20px; color: white; background-color: black;">
 			<tr ng-repeat="item in usersCtrl.users track by $index">
 				<td ng-click="usersCtrl.usersEditForm(item)" style="font-size:20px; color: white; background-color: black;">
-					<a href="#">
+					<span>
 						<img ng-src="./Pic/{{item.description}}" width=100 height=100>
-					</a>
-					<a style="color: white; font-size:20px" href="#">
+					</span>
+					<span style="color: white; font-size:20px">
 						{{item.name}}
 						({{item.description}})
-					</a>
+					</span>
 				</td>
 			</tr>
 		</table>
