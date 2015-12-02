@@ -3,19 +3,14 @@
 	List of signs (12)
 	</div>
 	<div>
-		<div>
-			<input type="text" class="form-control" 
-									   style="font-size:20px; 
-									   color: white; 
-									   background-color: black;
-									   border-style: none;
-									   float: left;"	
-			ng-model="signsCtrl.query">
-		</div>			
-		<div>
-			<span>S</span>
-		</div>
-	</div>
+		<input type="text" class="form-control" 
+								   style="font-size:20px; 
+								   color: white; 
+								   background-color: black;
+								   border-style: none;
+								   float: left;"	
+		ng-model="signsCtrl.query">
+	</div>			
 	<table class="table table-striped" style="font-size:20px; color: white; background-color: black;">
 		<tr ng-repeat="sign in signsCtrl.signs | filter:signsCtrl.query track by $index">
 			<td ng-click="signsCtrl.showToday(sign)" style="font-size:20px; color: white; background-color: black;">
