@@ -1,5 +1,7 @@
 <center ng-init="friendsCtrl.init()">
-	<div class="header" ng-click="friendsCtrl.goToBack()" ng-bind="friendsCtrl.title"></div>
+	<div class="header" ng-click="friendsCtrl.goToBack()">
+		{{friendsCtrl.title}} ({{friendsCtrl.friends.length}})
+	</div>
 	<br><br>
 	<table class="table table-striped input" style="font-size:20px; color: white; background-color: black;">
 		<tr ng-repeat="item in friendsCtrl.signs">
