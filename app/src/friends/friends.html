@@ -1,4 +1,8 @@
 <center ng-init="friendsCtrl.init()">
+	<div class="header">Horoscope</div>
+	<br><br>
+	<img ng-src="Pic/logo.png" width=200 height=200 ng-click="friendsCtrl.goToBack()">
+	<hr>
 	<div class="header" ng-click="friendsCtrl.goToBack()">
 		{{friendsCtrl.title}} ({{friendsCtrl.friends.length}})
 	</div>

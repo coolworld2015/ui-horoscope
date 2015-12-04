@@ -28,7 +28,7 @@
         init();
 
         function init() {
-            vm.title = 'List of friends';
+            vm.title = 'Registration';
 
             vm.sort = 'name';
 			
