@@ -35,10 +35,10 @@
                 UsersLocalStorage.users = [
                     {
 						id: '1', 
-						name: 'Your record', 
+						name: 'It\'s your record', 
 						birthDate: '11/11/11', 
 						photo: 'blank.png',
-						description: 'Change this'
+						description: 'change it'
 					}
                 ];
                 localStorage.setItem('horoscope_users', JSON.stringify(users));
