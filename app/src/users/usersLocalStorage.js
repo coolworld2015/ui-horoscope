@@ -26,16 +26,22 @@
 
         function getUsers() {
             if (UsersLocalStorage.users === undefined) {
-                var users = localStorage.getItem('warehouse_users');
+                var users = localStorage.getItem('horoscope_users');
                 users = JSON.parse(users);
                 UsersLocalStorage.users = users;
             }
 
             if (UsersLocalStorage.users === null) {
                 UsersLocalStorage.users = [
-                    {id: '1', name: '1', pass: '1', description: 'description'}
+                    {
+						id: '1', 
+						name: 'Your record', 
+						birthDate: '11/11/11', 
+						photo: 'blank.png',
+						description: 'Change this'
+					}
                 ];
-                localStorage.setItem('warehouse_users', JSON.stringify(users));
+                localStorage.setItem('horoscope_users', JSON.stringify(users));
             }
 
             return UsersLocalStorage.users.sort(sort);
@@ -71,11 +77,11 @@
         }
 
         function setUsers() {
-            localStorage.setItem('warehouse_users', JSON.stringify(UsersLocalStorage.users));
+            localStorage.setItem('horoscope_users', JSON.stringify(UsersLocalStorage.users));
         }
 
         function uploadUsers(users) {
-            localStorage.setItem('warehouse_users', JSON.stringify(users));
+            localStorage.setItem('horoscope_users', JSON.stringify(users));
             UsersLocalStorage.users = undefined;
         }
 

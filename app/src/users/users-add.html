@@ -34,11 +34,11 @@
 							   color: white; 
 							   background-color: black;
 							   border-style: none;"						
-                               placeholder="Date of birth" name="pass"
-                               ng-model="usersAddCtrl.pass">
+                               placeholder="Date of birth" name="birthDate"
+                               ng-model="usersAddCtrl.birthDate">
 
                         <div ng-if="usersAddCtrl.form.$submitted">
-                            <div ng-show="usersAddCtrl.form.pass.$error.required" class="valid">Value required</div>
+                            <div ng-show="usersAddCtrl.form.birthDate.$error.required" class="valid">Value required</div>
                         </div>
                     </td>
                 </tr>

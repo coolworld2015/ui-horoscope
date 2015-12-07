@@ -28,7 +28,8 @@
             var item = {
                 id: id,
                 name: vm.name,
-                pass: vm.pass,
+                birthDate: vm.birthDate,
+                photo: 'blank.png',
                 description: vm.description
             };
 			

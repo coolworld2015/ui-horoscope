@@ -30,12 +30,6 @@
         function init() {
             vm.title = 'Registration';
 
-            vm.sort = 'name';
-			
-            //$scope.currentPage = 1;
-            //$scope.numPerPage = 10;
-            //$scope.maxSize = 5;
-			
             if ($rootScope.mode == 'ON-LINE (Heroku)') {
                 getUsersOn();
             } else {

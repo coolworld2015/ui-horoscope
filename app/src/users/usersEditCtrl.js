@@ -37,7 +37,8 @@
             var item = {
                 id: vm.id,
                 name: vm.name,
-                pass: vm.pass,
+                birthDate: vm.birthDate,
+                photo: 'blank.png',
                 description: vm.description
             };
 			

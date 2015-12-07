@@ -7,7 +7,7 @@
 				border-style: solid;
 				border-width: thick;
 				width: 310px;">
-			<img ng-src="./Pic/{{usersEditCtrl.description}}" width=300px height=320px>
+			<img ng-src="./Pic/{{usersEditCtrl.photo}}" width=300px height=320px>
 		</div>
 		<br>
 		<table class="table table-bordered">
@@ -34,11 +34,11 @@
 						   color: white; 
 						   background-color: black;
 						   border-style: none;"
-						   placeholder="Date of birth" name="pass"
-						   ng-model="usersEditCtrl.pass">
+						   placeholder="Date of birth" name="birthDate"
+						   ng-model="usersEditCtrl.birthDate">
 
 					<div ng-if="usersEditCtrl.form.$submitted">
-						<div ng-show="usersEditCtrl.form.pass.$error.required" class="valid">Value required</div>
+						<div ng-show="usersEditCtrl.form.birthDate.$error.required" class="valid">Value required</div>
 					</div>
 				</td>
 			</tr>
