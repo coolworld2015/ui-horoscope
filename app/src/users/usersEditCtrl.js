@@ -38,7 +38,7 @@
                 id: vm.id,
                 name: vm.name,
                 birthDate: vm.birthDate,
-                photo: 'blank.png',
+                photo: vm.photo,
                 description: vm.description
             };
 			
