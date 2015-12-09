@@ -5,9 +5,13 @@
         .module('app')
         .controller('UsersAddCtrl', UsersAddCtrl);
 
-    UsersAddCtrl.$inject = ['$state', '$rootScope', 'UsersService', 'UsersLocalStorage'];
+    UsersAddCtrl.$inject = ['$state', '$rootScope', 
+		'SignsService',
+		'UsersService', 'UsersLocalStorage'];
 
-    function UsersAddCtrl($state, $rootScope, UsersService, UsersLocalStorage) {
+    function UsersAddCtrl($state, $rootScope, 
+		SignsService,
+		UsersService, UsersLocalStorage) {
         var vm = this;
 
         angular.extend(vm, {
@@ -29,7 +33,7 @@
                 id: id,
                 name: vm.name,
                 birthDate: vm.birthDate,
-                photo: 'blank.png',
+                photo: SignsService.getSignName(vm.birthDate) + '.jpg',
                 description: vm.description
             };
 			
