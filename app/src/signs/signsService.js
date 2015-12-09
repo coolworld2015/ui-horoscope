@@ -12,6 +12,7 @@
 
         return {
             getSigns: getSigns,
+			getSignName: getSignName,
             getSignsLocal: getSignsLocal
         };
 
@@ -22,7 +23,25 @@
                     return result;
                 });
         }
+		
+		function getSignName(bdate) {
+			var signName;
+			var parseDate = bdate.split("/");
+			var day = parseDate[1];
+			var month = parseDate[0].replace('0','');
 
+			var zodiac = ['', 'Capricorn', 'Aquarius', 'Pisces', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn'];
+			var last_day = ['', 19, 18, 20, 20, 21, 21, 22, 22, 21, 22, 21, 20, 19];
+
+			if (day > last_day[month]) {
+				signName = zodiac[month*1 + 1];
+			} else {
+				signName = zodiac[month];
+			}
+
+			return signName;
+		}
+		
         function getSignsLocal() {
             return [
                 {

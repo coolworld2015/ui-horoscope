@@ -5,9 +5,13 @@
         .module('app')
         .controller('UsersEditCtrl', UsersEditCtrl);
 
-    UsersEditCtrl.$inject = ['$state', '$rootScope', '$filter', 'UsersService', 'UsersLocalStorage', '$stateParams'];
+    UsersEditCtrl.$inject = ['$state', '$rootScope', '$filter', 
+		'UsersService', 'UsersLocalStorage', 'SignsService',
+		'$stateParams'];
 
-    function UsersEditCtrl($state, $rootScope, $filter, UsersService, UsersLocalStorage, $stateParams) {
+    function UsersEditCtrl($state, $rootScope, $filter, 
+		UsersService, UsersLocalStorage, SignsService,
+		$stateParams) {
         var vm = this;
 
         angular.extend(vm, {
@@ -38,7 +42,7 @@
                 id: vm.id,
                 name: vm.name,
                 birthDate: vm.birthDate,
-                photo: vm.photo,
+                photo: SignsService.getSignName(vm.birthDate) + '.jpg',
                 description: vm.description
             };
 			
