@@ -4,7 +4,7 @@
 	<img ng-src="Pic/logo.png" width=200 height=200 ng-click="signsCtrl.goToBack()">
 	<hr>
 	<div class="header" ng-click="signsCtrl.goToBack()">
-		List of signs (12)
+		List of signs ({{signsFilter.length}})
 	</div>
 	<div>
 		<input type="text" class="form-control" 
@@ -16,7 +16,9 @@
 		ng-model="signsCtrl.query">
 	</div>			
 	<table class="table table-striped" style="font-size:20px; color: white; background-color: black;">
-		<tr ng-repeat="sign in signsCtrl.signs | filter:signsCtrl.query track by $index">
+		<tr ng-repeat="sign in signsCtrl.signs 
+			| filter:signsCtrl.query as signsFilter
+			track by $index">
 			<td ng-click="signsCtrl.showToday(sign)" style="font-size:20px; color: white; background-color: black;">
 				<div style="border-style: solid;
 						border-width: thick;
