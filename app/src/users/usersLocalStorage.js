@@ -36,8 +36,8 @@
                     {
 						id: '1', 
 						name: 'It\'s your record', 
-						birthDate: '11/11/11', 
-						photo: 'blank.png',
+						birthDate: 'Birth Date', 
+						photo: 'undefined.jpg',
 						description: 'change it'
 					}
                 ];
