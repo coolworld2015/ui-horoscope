@@ -8,37 +8,33 @@
 
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
-
-function runads() {
-	document.addEventListener('deviceready', initApp, false);
-}
-  
 var admobid = {};
+document.addEventListener('deviceready', initApp, false);
+  
 if( /(android)/i.test(navigator.userAgent) ) { 
-    admobid = { // for Android
-        banner: 'ca-app-pub-6869992474017983/9375997553',
-        interstitial: 'ca-app-pub-6869992474017983/1657046752'
+    admobid = {
+        banner: 'ca-app-pub-6869992474017983/9375997553'
     };
 } 
 
 function initApp() {
 	document.removeEventListener('deviceready', initApp, false);	
     if (AdMob) {
+	setTimeout(function() {
         AdMob.createBanner({
             adId : admobid.banner,
             position : AdMob.AD_POSITION.BOTTOM_CENTER,
             autoShow : true
         });
+      }, 1000);
     }
 }
-
 </script>
 </head>
 
 <script type="text/javascript" src="app.js"></script>
 <script type="text/javascript" src="templates.js"></script>
-
-<body ng-app="app" onload="runads()">
+<body ng-app="app">
     <div ui-view></div>
 </body>
 </html>
