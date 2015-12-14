@@ -35,3 +35,6 @@ Move apk to Genymotion for running in VM
 -------------------------------------------------------------------------------------------------
 D:\android_test\config.xml add <icon src="logo.png" />
 -------------------------------------------------------------------------------------------------
+For Google AdMob use AdMob Plugin Pro
+https://github.com/floatinghotpot/cordova-admob-pro
+-------------------------------------------------------------------------------------------------
