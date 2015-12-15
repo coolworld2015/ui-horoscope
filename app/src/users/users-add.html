@@ -42,14 +42,14 @@
 
 			<tr>
 				<td>
-					<input type="text" class="form-control input" required
+					<textarea rows=5 type="text" class="form-control input" required
 						   style="font-size:20px; 
 						   color: white; 
 						   background-color: black;
 						   border-style: none;"						
 						   placeholder="Description" name="description"
 						   ng-model="usersAddCtrl.description">
-
+					</textarea>
 					<div ng-if="usersAddCtrl.form.$submitted">
 						<div ng-show="usersAddCtrl.form.description.$error.required" class="valid">Value required</div>
 					</div>
