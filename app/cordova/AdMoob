@@ -13,7 +13,8 @@ document.addEventListener('deviceready', initApp, false);
   
 if( /(android)/i.test(navigator.userAgent) ) { 
     admobid = {
-        banner: 'ca-app-pub-6869992474017983/9375997553'
+      //banner: 'ca-app-pub-6869992474017983/9375997553'
+        banner: 'ca-app-pub-4884500146569199/4949665866'
     };
 } 
 

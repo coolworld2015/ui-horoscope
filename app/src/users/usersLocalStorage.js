@@ -36,7 +36,7 @@
                     {
 						id: '1', 
 						name: 'It\'s your record', 
-						birthDate: 'Birth Date', 
+						birthDate: 'enter birth date', 
 						photo: 'undefined.jpg',
 						description: 'change it'
 					}
