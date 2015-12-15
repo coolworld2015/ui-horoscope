@@ -1,7 +1,7 @@
 <center ng-init="signsCtrl.init()">
 	<div class="header">Horoscope</div>
 	<br><br>
-	<img ng-src="Pic/undefined.jpg" width=200 height=200 ng-click="signsCtrl.goToBack()">
+	<img ng-src="Pic/logo.jpg" width=200 height=200 ng-click="signsCtrl.goToBack()">
 	<hr>
 	<div class="header" ng-click="signsCtrl.goToBack()">
 		List of signs ({{signsFilter.length}})
@@ -17,22 +17,22 @@
 		ng-model="signsCtrl.query">
 	</div>			
 	<table class="table table-striped" style="font-size:20px; color: white; background-color: black;">
-		<tr ng-repeat="sign in signsCtrl.signs 
+		<tr ng-repeat="item in signsCtrl.signs 
 			| filter:signsCtrl.query as signsFilter
 			track by $index">
-			<td ng-click="signsCtrl.showToday(sign)" style="font-size:20px; color: white; background-color: black;">
+			<td ng-click="signsCtrl.showToday(item)" style="font-size:20px; color: white; background-color: black;">
 				<div style="border-style: solid;
 						border-width: thick;
 						float: left;">
-					<img ng-src="./Pic/{{sign.signName}}.jpg" width=100 height=100>
+					<img ng-src="./Pic/{{item.signName}}.jpg" width=100 height=100>
 				</div>
 				<div style="float: left;
 							color: white;
 							font-size: 20px;
 							padding: 45px 0 0 15px;">
-					{{sign.signName}}
-					({{sign.startDate | jsonDate | date: 'MM/dd'}} -
-					{{sign.endDate | jsonDate | date: 'MM/dd'}})
+					{{item.signName}}
+					({{item.startDate | jsonDate | date: 'MM/dd'}} -
+					{{item.endDate | jsonDate | date: 'MM/dd'}})
 				</div>
 			</td>
 		</tr>

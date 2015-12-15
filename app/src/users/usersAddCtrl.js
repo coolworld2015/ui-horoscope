@@ -29,11 +29,12 @@
             $rootScope.loading = true;
 
             var id = (Math.random() * 1000000).toFixed();
+			var signName = SignsService.getSignName(vm.birthDate) || "logo";
             var item = {
                 id: id,
                 name: vm.name,
                 birthDate: vm.birthDate,
-                photo: SignsService.getSignName(vm.birthDate) + '.jpg',
+                signName: signName,
                 description: vm.description
             };
 			

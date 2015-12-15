@@ -37,11 +37,11 @@
 						id: '1', 
 						name: 'It\'s your record', 
 						birthDate: 'enter birth date', 
-						photo: 'undefined.jpg',
+						signName: 'logo',
 						description: 'change it'
 					}
                 ];
-                localStorage.setItem('horoscope_users', JSON.stringify(users));
+                setUsers();
             }
 
             return UsersLocalStorage.users.sort(sort);

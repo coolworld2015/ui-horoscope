@@ -48,7 +48,11 @@
 
         function signsBack() {
             $rootScope.loading = true;
-            $state.go('signs');
+			if ($stateParams.item.friends) {
+				$state.go('friends');
+			} else {
+				$state.go('signs');
+			}
         }
     }
 })();

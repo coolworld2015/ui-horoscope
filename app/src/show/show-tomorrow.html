@@ -1,9 +1,15 @@
 <center ng-init="showTomorrowCtrl.init()">
 	<div class="header">{{showTomorrowCtrl.signName}} on {{showTomorrowCtrl.date}} </div>
 	<br><br>
-	<img ng-src="Pic/{{showTomorrowCtrl.signName}}.jpg" width=200 height=200>
+		<div 
+			style="border-color: white;
+				border-style: solid;
+				border-width: thick;
+				width: 310px;">
+			<img ng-src="Pic/{{showTomorrowCtrl.signName}}.jpg" width=300px height=320px>
+		</div>	
 	<hr>
-	<div style="font-size:20px; color: white; background-color: black;">{{showTomorrowCtrl.details}}</div>
+		<div style="font-size:20px; color: white; background-color: black;">{{showTomorrowCtrl.details}}</div>
 	<hr>
 
 	<button class="btn btn-primary button" ng-click="showTomorrowCtrl.showYesterday()">Yesterday</button>&nbsp

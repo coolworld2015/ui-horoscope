@@ -37,15 +37,16 @@
 
             $rootScope.myError = false;
             $rootScope.loading = true;
-
+			
+			var signName = SignsService.getSignName(vm.birthDate) || "logo";
             var item = {
                 id: vm.id,
                 name: vm.name,
                 birthDate: vm.birthDate,
-                photo: SignsService.getSignName(vm.birthDate) + '.jpg',
+				signName: signName,
                 description: vm.description
             };
-			
+				
             if ($rootScope.mode == 'ON-LINE (Heroku)') {
 				UsersService.editItem(item)
 					.then(function () {
