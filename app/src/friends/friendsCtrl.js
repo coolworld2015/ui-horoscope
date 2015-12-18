@@ -35,7 +35,7 @@
 			item.friends = true;
 			$rootScope.loading = true;
             $rootScope.myError = false;
-            $state.go('show-today', {item: item});
+            $state.go('show-today', {signName: item.signName, friends: true});
         }
 
         function goToBack() {

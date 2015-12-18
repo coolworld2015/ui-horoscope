@@ -15,7 +15,8 @@
 				var webUrl = $rootScope.myConfig.webUrl;
 				var d = new Date;
 				var todayDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
-				var param = "&sign=" + $stateParams.item.signName + "&date=" + ShowService.paramDate(paramDate);
+				var signName = $stateParams.signName;
+				var param = "&sign=" + signName + "&date=" + ShowService.paramDate(paramDate);
 				var url = webUrl + param + '&callback=JSON_CALLBACK';
 				return $http.jsonp(url)
 					.then(function (result) {
@@ -53,8 +54,7 @@
             })
 
             .state('show-today', {
-                url: '/show-today',
-                params: {item:{}},
+                url: '/show-today?signName?friends',
                 templateUrl: 'show/show-today.html',
                 controller: 'ShowTodayCtrl',
                 controllerAs: 'showTodayCtrl',
@@ -67,8 +67,7 @@
             })
 
             .state('show-yesterday', {
-                url: '/show-yesterday',
-                params: {item:{}},
+                url: '/show-yesterday?signName?friends',
                 templateUrl: 'show/show-yesterday.html',
                 controller: 'ShowYesterdayCtrl',
                 controllerAs: 'showYesterdayCtrl',
@@ -81,8 +80,7 @@
             })
 
             .state('show-tomorrow', {
-                url: '/show-tomorrow',
-                params: {item:{}},
+                url: '/show-tomorrow?signName?friends',
                 templateUrl: 'show/show-tomorrow.html',
                 controller: 'ShowTomorrowCtrl',
                 controllerAs: 'showTomorrowCtrl',

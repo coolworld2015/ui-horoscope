@@ -17,10 +17,11 @@
             errorHandler: errorHandler
         });
 
-        angular.extend(vm, $stateParams.item);
+        //angular.extend(vm, $stateParams.item);
 
         function init() {
             vm.date = ShowService.paramDate('yesterday');
+			vm.signName = $stateParams.signName;
 			
 			if (yesterday) {
 			vm.details = yesterday;
@@ -33,12 +34,12 @@
 
         function showToday() {
             $rootScope.loading = true;
-            $state.go('show-today', {item: $stateParams.item});
+            $state.go('show-today', {signName: $stateParams.signName});
         }
 
         function showTomorrow() {
             $rootScope.loading = true;
-            $state.go('show-tomorrow', {item: $stateParams.item});
+            $state.go('show-tomorrow', {signName: $stateParams.signName});
         }
 
         function errorHandler() {
@@ -48,7 +49,7 @@
 
         function signsBack() {
             $rootScope.loading = true;
-			if ($stateParams.item.friends) {
+			if ($stateParams.friends) {
 				$state.go('friends');
 			} else {
 				$state.go('signs');
