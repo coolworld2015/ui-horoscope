@@ -34,12 +34,12 @@
 
         function showToday() {
             $rootScope.loading = true;
-            $state.go('show-today', {signName: $stateParams.signName});
+            $state.go('show-today', {signName: $stateParams.signName, friends: $stateParams.friends});
         }
 
         function showTomorrow() {
             $rootScope.loading = true;
-            $state.go('show-tomorrow', {signName: $stateParams.signName});
+            $state.go('show-tomorrow', {signName: $stateParams.signName, friends: $stateParams.friends});
         }
 
         function errorHandler() {
