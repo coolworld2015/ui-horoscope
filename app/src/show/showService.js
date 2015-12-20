@@ -24,26 +24,37 @@
         }
 		
 		function paramDate(param) {
-			var today, tomorrow, month, paramDate, year;
-			var d = new Date;
-			
+			var d, today, yesterday, tomorrow, month, paramDate, 
+				year, monthTomorrow, monthYesterday;
+			d = new Date;
+			year = d.getFullYear();
 			month = d.getMonth() + 1;
-			if (month == 13) {month = '12'};
-			
+			monthTomorrow = month;
+			monthYesterday = month;
 			today = d.getDate();
+			
+			if (today == '01') {
+				monthYesterday = month - 1;
+				yesterday = '30';
+			} else {
+				yesterday = today - 1;
+			}
+			
 			if (today == 30) {
 				tomorrow = '01';
+				monthTomorrow = month + 1;
 			} else {
 				tomorrow = today + 1;
 			}
 			
-			year = d.getFullYear();
+			if (month == 13) {month = '12'};
+			
 			switch(param) {
 				case 'today': paramDate = month + '/' + today + '/' + year;
 							  break;
-				case 'yesterday': paramDate = month + '/' + (today - 1) + '/' + year;
+				case 'yesterday': paramDate = monthYesterday + '/' + yesterday + '/' + year;
 							  break;
-				case 'tomorrow': paramDate = month + '/' + tomorrow + '/' + year;
+				case 'tomorrow': paramDate = monthTomorrow + '/' + tomorrow + '/' + year;
 							  break;
 				default: paramDate = month + '/' + day + '/' + year;
 							  break;				
