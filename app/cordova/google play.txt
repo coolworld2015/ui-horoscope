@@ -2,7 +2,7 @@ cordova build android --release
 
 get android-release-unsigned.apk
 
-C:\Program Files\Java\jdk1.8.0_65\bin>
+C:\Program Files\Java\jdk1.8.0_65\bin
 
 keytool -genkey -v -keystore my-release-key.keystore -alias UI-Horoscope -keyalg RSA -keysize 2048 -validity 10000
 
@@ -11,5 +11,5 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.
 zipalign -v 4 android-release-unsigned.apk ui-horoscope.apk
 
 UI-Horoscope.
-It's simply horoscope for you and your friends.
-Enjoy.
+It's simple horoscope for you and your friends.
+Enjoy it.
