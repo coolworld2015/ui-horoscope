@@ -5,9 +5,9 @@
         .module('app')
         .controller('UsersDialogCtrl', UsersDialogCtrl);
 
-    UsersDialogCtrl.$inject = ['$state', '$rootScope', 'UsersService', 'UsersLocalStorage', '$stateParams'];
+    UsersDialogCtrl.$inject = ['$state', '$rootScope', '$timeout', 'UsersService', 'UsersLocalStorage', '$stateParams'];
 
-    function UsersDialogCtrl($state, $rootScope, UsersService, UsersLocalStorage, $stateParams) {
+    function UsersDialogCtrl($state, $rootScope, $timeout, UsersService, UsersLocalStorage, $stateParams) {
         var vm = this;
 
         angular.extend(vm, {
@@ -18,6 +18,10 @@
 
         angular.extend(vm, $stateParams.item);
 
+		$timeout(function () {
+			window.scrollTo(0,0);
+		});
+		
         function usersDelete() {
             $rootScope.loading = true;
             $rootScope.myError = false;

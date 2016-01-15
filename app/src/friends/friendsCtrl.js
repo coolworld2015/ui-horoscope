@@ -5,9 +5,9 @@
         .module('app')
         .controller('FriendsCtrl', FriendsCtrl);
 
-    FriendsCtrl.$inject = ['$scope', '$rootScope', '$state', 'UsersLocalStorage'];
+    FriendsCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'UsersLocalStorage'];
 
-    function FriendsCtrl($scope, $rootScope, $state, UsersLocalStorage) {
+    function FriendsCtrl($scope, $rootScope, $state, $timeout, UsersLocalStorage) {
         var vm = this;
         angular.extend(vm, {
             init: init,
@@ -17,6 +17,12 @@
             errorHandler: errorHandler
         });
 
+		$timeout(function () {
+			window.scrollTo(0,0);
+		});
+		
+		init();
+		
         function init() {
             $rootScope.loading = false;
             $rootScope.myError = false;

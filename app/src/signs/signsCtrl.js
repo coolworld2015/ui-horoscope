@@ -5,9 +5,9 @@
         .module('app')
         .controller('SignsCtrl', SignsCtrl);
 
-    SignsCtrl.$inject = ['$scope', '$rootScope', '$state', 'SignsService'];
+    SignsCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'SignsService'];
 
-    function SignsCtrl($scope, $rootScope, $state, SignsService) {
+    function SignsCtrl($scope, $rootScope, $state, $timeout, SignsService) {
         var vm = this;
         angular.extend(vm, {
             init: init,
@@ -16,7 +16,13 @@
             signsBack: signsBack,
             errorHandler: errorHandler
         });
-
+		
+		$timeout(function () {
+			window.scrollTo(0,0);
+		});
+	
+		init();
+		
         function init() {
             $rootScope.loading = false;
             $rootScope.myError = false;

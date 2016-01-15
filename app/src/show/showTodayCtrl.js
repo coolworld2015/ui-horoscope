@@ -5,9 +5,9 @@
         .module('app')
         .controller('ShowTodayCtrl', ShowTodayCtrl);
 
-    ShowTodayCtrl.$inject = ['$rootScope', '$state', '$stateParams', 'ShowService', 'today'];
+    ShowTodayCtrl.$inject = ['$rootScope', '$state', '$timeout', '$stateParams', 'ShowService', 'today'];
 
-    function ShowTodayCtrl($rootScope, $state, $stateParams, ShowService, today) {
+    function ShowTodayCtrl($rootScope, $state, $timeout, $stateParams, ShowService, today) {
         var vm = this;
         angular.extend(vm, {
             init: init,
@@ -16,20 +16,25 @@
             signsBack: signsBack,
             errorHandler: errorHandler
         });
-
-        //angular.extend(vm, $stateParams.item);
+		
+		$timeout(function () {
+			window.scrollTo(0,0);
+		},100);
+		
+		init();
 
         function init() {
             vm.date = ShowService.paramDate('today');
 			vm.signName = $stateParams.signName;
 			
 			if (today) {
-			vm.details = today;
-            $rootScope.loading = false;
-            $rootScope.myError = false;
+				vm.details = today;
+				$rootScope.loading = false;
+				$rootScope.myError = false;
 			} else {
 				errorHandler();
 			}
+
         }
 
         function showYesterday() {

@@ -5,11 +5,11 @@
         .module('app')
         .controller('UsersEditCtrl', UsersEditCtrl);
 
-    UsersEditCtrl.$inject = ['$state', '$rootScope', '$filter', 
+    UsersEditCtrl.$inject = ['$state', '$rootScope', '$filter', '$timeout',
 		'UsersService', 'UsersLocalStorage', 'SignsService',
 		'$stateParams'];
 
-    function UsersEditCtrl($state, $rootScope, $filter, 
+    function UsersEditCtrl($state, $rootScope, $filter, $timeout,
 		UsersService, UsersLocalStorage, SignsService,
 		$stateParams) {
         var vm = this;
@@ -24,6 +24,10 @@
 
         angular.extend(vm, $stateParams.item);
 
+		$timeout(function () {
+			window.scrollTo(0,0);
+		});
+		
         init();
 
         function init() {

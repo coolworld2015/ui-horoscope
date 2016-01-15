@@ -6,11 +6,11 @@
         .controller('UsersAddCtrl', UsersAddCtrl);
 
     UsersAddCtrl.$inject = ['$state', '$rootScope', 
-		'SignsService',
+		'SignsService', '$timeout',
 		'UsersService', 'UsersLocalStorage'];
 
     function UsersAddCtrl($state, $rootScope, 
-		SignsService,
+		SignsService, $timeout,
 		UsersService, UsersLocalStorage) {
         var vm = this;
 
@@ -20,6 +20,10 @@
 			_errorHandler: errorHandler
         });
 
+		$timeout(function () {
+			window.scrollTo(0,0);
+		});
+		
         function usersAddSubmit() {
             if (vm.form.$invalid) {
                 return;
