@@ -10,8 +10,8 @@
     function routeConfig($stateProvider, $urlRouterProvider) {
 	
 		function resolver(paramDate) {
-			getHoroscope.$inject =['$rootScope', '$http', '$stateParams', 'ShowService'];
-			function getHoroscope($rootScope, $http, $stateParams, ShowService) {
+			getHoroscope.$inject =['$rootScope', '$q', '$http', '$stateParams', 'ShowService'];
+			function getHoroscope($rootScope, $q, $http, $stateParams, ShowService) {
 				var webUrl = $rootScope.myConfig.webUrl;
 				var d = new Date;
 				var todayDate = d.getMonth() + 1 + '/' + (d.getDate()) + '/' + d.getFullYear();
@@ -24,7 +24,10 @@
 						details = details.replace(/’/g, "'");
 						return details;
 					})
-					.catch(function() {
+					.catch(function (reject) {
+						$rootScope.loading = false;
+						$rootScope.myError = true;
+						return $q.reject(reject);
 					});
 			}
 			return getHoroscope;
