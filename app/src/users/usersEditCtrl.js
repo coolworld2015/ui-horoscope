@@ -31,7 +31,12 @@
         init();
 
         function init() {
-            vm.total = $filter('number')(vm.sum, 2);
+            if ($stateParams.item.name == undefined) {
+                $state.go('users');
+            }
+			
+			$rootScope.myError = false;
+            $rootScope.loading = false;
         }
 
         function usersSubmit() {
