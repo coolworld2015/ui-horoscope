@@ -17,23 +17,23 @@
             errorHandler: errorHandler
         });
 
-		$timeout(function () {
-			window.scrollTo(0,0);
-		},100);
-	
-		init();
+        $timeout(function () {
+            window.scrollTo(0, 0);
+        }, 100);
+
+        init();
 
         function init() {
             vm.date = ShowService.paramDate('tomorrow');
-			vm.signName = $stateParams.signName;
-			
-			if (tomorrow) {
-				vm.details = tomorrow;
-				$rootScope.loading = false;
-				$rootScope.myError = false;
-			} else {
-				errorHandler();
-			}			
+            vm.signName = $stateParams.signName;
+
+            if (tomorrow) {
+                vm.details = tomorrow;
+                $rootScope.loading = false;
+                $rootScope.myError = false;
+            } else {
+                errorHandler();
+            }
         }
 
         function showYesterday() {
@@ -53,11 +53,17 @@
 
         function signsBack() {
             $rootScope.loading = true;
-			if ($stateParams.friends) {
-				$state.go('friends');
-			} else {
-				$state.go('signs');
-			}
+            if ($stateParams.friends) {
+                $rootScope.loading = true;
+                $timeout(function () {
+                    $state.go('friends');
+                }, 100);
+            } else {
+                $rootScope.loading = true;
+                $timeout(function () {
+                    $state.go('signs');
+                }, 100);
+            }
         }
     }
 })();

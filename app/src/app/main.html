@@ -4,12 +4,12 @@
         <br><br>
         <img ng-src="Pic/logo.jpg" width=200 height=200>
         <br><br>
-		<div  ng-click="mainCtrl.go()">
-		<hr>
-			<a ui-sref="signs" class="list-group-item" style="font-size:24px; font-weight: bold; color: white; background-color: black; border: black;">List of signs</a>
-			<a ui-sref="friends"  class="list-group-item" style="font-size:24px; font-weight: bold; color: white; background-color: black; border: black;">Friend's horoscope</a>
-			<a ui-sref="users" class="list-group-item" style="font-size:24px; font-weight: bold; color: white; background-color: black; border: black;">Registration</a>
-		<hr>
+		<div>
+			<hr>
+				<a ng-click="mainCtrl.go('signs')" href='#' class="list-group-item" style="font-size:24px; font-weight: bold; color: white; background-color: black; border: black;">List of signs</a>
+				<a ng-click="mainCtrl.go('friends')" href='#' class="list-group-item" style="font-size:24px; font-weight: bold; color: white; background-color: black; border: black;">Friend's horoscope</a>
+				<a ng-click="mainCtrl.go('users')" href='#' class="list-group-item" style="font-size:24px; font-weight: bold; color: white; background-color: black; border: black;">Registration</a>
+ 			<hr>
 		</div>
     </div>
 </center>

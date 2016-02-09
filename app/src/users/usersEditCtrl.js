@@ -1,17 +1,17 @@
 (function () {
     'use strict';
-    
+
     angular
         .module('app')
         .controller('UsersEditCtrl', UsersEditCtrl);
 
-    UsersEditCtrl.$inject = ['$state', '$rootScope', '$filter', '$timeout',
-		'UsersService', 'UsersLocalStorage', 'SignsService',
-		'$stateParams'];
+    UsersEditCtrl.$inject = ['$state', '$rootScope', '$timeout',
+        'UsersService', 'UsersLocalStorage', 'SignsService',
+        '$stateParams'];
 
-    function UsersEditCtrl($state, $rootScope, $filter, $timeout,
-		UsersService, UsersLocalStorage, SignsService,
-		$stateParams) {
+    function UsersEditCtrl($state, $rootScope, $timeout,
+                           UsersService, UsersLocalStorage, SignsService,
+                           $stateParams) {
         var vm = this;
 
         angular.extend(vm, {
@@ -19,23 +19,23 @@
             usersSubmit: usersSubmit,
             usersDialog: usersDialog,
             usersEditBack: usersEditBack,
-			_errorHandler: errorHandler
+            _errorHandler: errorHandler
         });
 
         angular.extend(vm, $stateParams.item);
 
-		$timeout(function () {
-			window.scrollTo(0,0);
-		});
-		
+        $timeout(function () {
+            window.scrollTo(0, 0);
+        });
+
         init();
 
         function init() {
             if ($stateParams.item.name == undefined) {
                 $state.go('users');
             }
-			
-			$rootScope.myError = false;
+
+            $rootScope.myError = false;
             $rootScope.loading = false;
         }
 
@@ -46,27 +46,30 @@
 
             $rootScope.myError = false;
             $rootScope.loading = true;
-			
-			var signName = SignsService.getSignName(vm.birthDate) || "logo";
+
+            var signName = SignsService.getSignName(vm.birthDate) || "logo";
             var item = {
                 id: vm.id,
                 name: vm.name,
                 birthDate: vm.birthDate,
-				signName: signName,
+                signName: signName,
                 description: vm.description
             };
-				
+
             if ($rootScope.mode == 'ON-LINE (Heroku)') {
-				UsersService.editItem(item)
-					.then(function () {
-						$rootScope.myError = false;
-						$state.go('users');
-					})
-					.catch(errorHandler);
-			} else {
-				UsersLocalStorage.editItem(item);
-				$state.go('users');
-			}
+                UsersService.editItem(item)
+                    .then(function () {
+                        $rootScope.myError = false;
+                        $state.go('users');
+                    })
+                    .catch(errorHandler);
+            } else {
+                UsersLocalStorage.editItem(item);
+                $rootScope.loading = true;
+                $timeout(function () {
+                    $state.go('users');
+                }, 100);
+            }
         }
 
         function usersDialog() {
@@ -74,13 +77,19 @@
                 id: vm.id,
                 name: vm.name
             };
-            $state.go('users-dialog', {item: obj});
+            $rootScope.loading = true;
+            $timeout(function () {
+                $state.go('users-dialog', {item: obj});
+            }, 100);
         }
 
         function usersEditBack() {
-            $state.go('users');
+            $rootScope.loading = true;
+            $timeout(function () {
+                $state.go('users');
+            }, 100);
         }
-		
+
         function errorHandler() {
             $rootScope.loading = false;
             $rootScope.myError = true;

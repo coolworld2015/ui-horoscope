@@ -49,7 +49,10 @@
         }
 
         function signsBack() {
-            $state.go('main');
+            $rootScope.loading = true;
+            $timeout(function () {
+                $state.go('main');
+            }, 100);
         }
 
         function errorHandler() {

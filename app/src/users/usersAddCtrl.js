@@ -22,6 +22,7 @@
 
 		$timeout(function () {
 			window.scrollTo(0,0);
+            $rootScope.loading = false;
 		});
 		
         function usersAddSubmit() {
@@ -51,12 +52,18 @@
 					.catch(errorHandler);
 			} else {
 				UsersLocalStorage.addItem(item);
-				$state.go('users');
+                $rootScope.loading = true;
+                $timeout(function () {
+                    $state.go('users');
+                }, 100);
 			}
         }
 
         function usersAddBack() {
-            $state.go('users');
+            $rootScope.loading = true;
+            $timeout(function () {
+                $state.go('users');
+            }, 100);
         }
 		
         function errorHandler() {

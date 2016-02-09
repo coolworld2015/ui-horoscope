@@ -5,56 +5,37 @@
         .module('app')
         .controller('UsersCtrl', UsersCtrl);
 
-    UsersCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'UsersService', 'UsersLocalStorage'];
+    UsersCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'UsersLocalStorage'];
 
-    function UsersCtrl($scope, $rootScope, $state, $timeout, UsersService, UsersLocalStorage) {
-        $scope.$watch('numPerPage', currentPage);			
+    function UsersCtrl($scope, $rootScope, $state, $timeout, UsersLocalStorage) {
+        $scope.$watch('numPerPage', currentPage);
         $scope.$watch('currentPage', currentPage);
         var vm = this;
 
         angular.extend(vm, {
             init: init,
-			currentPage: currentPage,			
-            numPages: numPages,
-            usersSort: usersSort,
+            currentPage: currentPage,
             usersEditForm: usersEditForm,
             usersAdd: usersAdd,
             goToBack: goToBack,
-			goToHead: goToHead,		
+            goToHead: goToHead,
             usersBack: usersBack,
-			_errorHandler: errorHandler
+            _errorHandler: errorHandler
         });
 
-		$timeout(function () {
-			window.scrollTo(0,0);
-		});
-		
+        $timeout(function () {
+            window.scrollTo(0, 0);
+        });
+
         init();
 
         function init() {
             vm.title = 'Registration';
-
-            if ($rootScope.mode == 'ON-LINE (Heroku)') {
-                getUsersOn();
-            } else {
-                vm.users = UsersLocalStorage.getUsers();
-				$rootScope.myError = false;
-				$rootScope.loading = false;
-            }
-		}
-		
-        function getUsersOn() {
-            UsersService.getUsers()
-				.then(function(data){
-					$scope.filteredUsers = [];
-					vm.users = data.data;
-					currentPage();
-					$rootScope.myError = false;
-					$rootScope.loading = false;
-				})
-				.catch(errorHandler);
+            vm.users = UsersLocalStorage.getUsers();
+            $rootScope.myError = false;
+            $rootScope.loading = false;
         }
-		
+
         function currentPage() {
             if (Object.prototype.toString.call(vm.users) == '[object Array]') {
                 var begin = (($scope.currentPage - 1) * $scope.numPerPage);
@@ -64,35 +45,35 @@
             }
         }
 
-        function numPages() {
-            return Math.ceil(vm.clients.length / $scope.numPerPage);
-        }
-
-        function usersSort(val) {
-            vm.sort = val;
-            vm.rev = !vm.rev;
-        }
-
         function usersEditForm(item) {
-            $state.go('users-edit', {item: item});
+            $rootScope.loading = true;
+            $timeout(function () {
+                $state.go('users-edit', {item: item});
+            }, 100);
         }
 
         function usersAdd() {
-            $state.go('users-add');
+            $rootScope.loading = true;
+            $timeout(function () {
+                $state.go('users-add');
+            }, 100);
         }
 
         function goToBack() {
             $scope.$broadcast('scrollHere');
         }
-		
-		function goToHead() {
+
+        function goToHead() {
             $scope.$broadcast('scrollThere');
-        }	
-				
-        function usersBack() {
-            $state.go('main');
         }
-		
+
+        function usersBack() {
+            $rootScope.loading = true;
+            $timeout(function () {
+                $state.go('main');
+            }, 100);
+        }
+
         function errorHandler() {
             $rootScope.loading = false;
             $rootScope.myError = true;

@@ -55,9 +55,15 @@
         function signsBack() {
             $rootScope.loading = true;
 			if ($stateParams.friends) {
-				$state.go('friends');
+                $rootScope.loading = true;
+                $timeout(function () {
+                    $state.go('friends');
+                }, 100);
 			} else {
-				$state.go('signs');
+                $rootScope.loading = true;
+                $timeout(function () {
+                    $state.go('signs');
+                }, 100);
 			}
         }
     }
